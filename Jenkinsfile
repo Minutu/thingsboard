@@ -24,7 +24,7 @@ pipeline {
             }
         }
 
-        stage('Construire l'image Docker Thingsboard') {
+        stage('Construire l\'image Docker Thingsboard') {
             steps {
                 sh './docker/docker-install-tb.sh --loadDemo'
             }
