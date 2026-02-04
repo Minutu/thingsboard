@@ -37,7 +37,7 @@ pipeline {
             steps {
                 sh 'docker stop thingsboard-local || true'
                 sh 'docker rm thingsboard-local || true'
-                sh 'docker run --name thingsboard-local -p 9090:9090 thingsboard/tb:local'
+                sh 'docker run --name thingsboard-local -p 9090:9090 -d thingsboard/tb:local'
             }
         }
     }
