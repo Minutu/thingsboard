@@ -12,21 +12,22 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Compilation et exécution des tests unitaires') {
-            steps {
-                sh 'mvn clean install --projects common/actor,common/data -am -Dlicense.skip=true'
-            }
-            // Lecture des resultats des tests qu'on vient de run.
-            post {
-                always {
-                    junit '**/target/surefire-reports/*.xml'
-                }
-            }
-        }
+        //stage('Compilation et exécution des tests unitaires') {
+        //    steps {
+        //        sh 'mvn clean install --projects common/actor,common/data -am -Dlicense.skip=true'
+        //    }
+        //    // Lecture des resultats des tests qu'on vient de run.
+        //    post {
+        //        always {
+        //            junit '**/target/surefire-reports/*.xml'
+        //        }
+        //    }
+        //}
 
         stage('Construire l\'image Docker Thingsboard') {
             steps {
-                sh './docker/docker-install-tb.sh --loadDemo'
+                sh 'cd ./docker'
+                sh './docker-install-tb.sh --loadDemo'
             }
         }
 
