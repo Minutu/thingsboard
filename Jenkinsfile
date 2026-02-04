@@ -15,7 +15,8 @@ pipeline {
 
         stage('Compilation et exécution des tests unitaires') {
             steps {
-                sh 'mvn clean install --projects common/actor,common/data -am -Dlicense.skip=true'
+                sh 'mvn clean install -T 1C -DskipTests -pl msa/tb -am -Dlicense.skip=true'
+                sh 'mvn test --projects common/actor,common/transport/mqtt'
             }
             // Lecture des resultats des tests qu'on vient de run.
             post {
@@ -27,7 +28,6 @@ pipeline {
 
         stage('Construire l\'image Docker Thingsboard') {
             steps {
-                sh 'mvn clean install -DskipTests -pl msa/tb -am -Dlicense.skip=true'
                 sh 'docker build -t thingsboard/tb:local -f ./msa/tb/target/docker-postgres/Dockerfile ./msa/tb/target/docker-postgres'
             }
         }
