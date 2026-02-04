@@ -14,6 +14,12 @@ pipeline {
                 echo 'Ca print pas bro'
             }
         }
+
+        stage('Docker container Test') {
+            steps {
+                sh "docker run -d --name test-ubuntu -it ubuntu:latest tail -f /dev/null"
+            }
+        }
     }
 
     post {
