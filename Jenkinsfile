@@ -11,6 +11,7 @@ pipeline {
             steps {
                 checkout scm
                 sh 'ls'
+                echo 'Ca print pas bro'
             }
         }
     }
