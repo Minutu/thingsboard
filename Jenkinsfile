@@ -17,6 +17,7 @@ pipeline {
             steps {
                 sh 'mvn clean install -T 1C -DskipTests -pl msa/tb -am -Dlicense.skip=true'
                 sh 'mvn test --projects common/actor,common/transport/mqtt'
+                sh 'mvn test --projects application -Dtest=Log8371PingControllerTest'
             }
             // Lecture des resultats des tests qu'on vient de run.
             post {
